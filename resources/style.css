@@ -1,0 +1,17 @@
+body {
+    background-color: #17497C;
+    margin: 0;
+}
+
+h1 {
+    padding: 50px;
+    text-align: center;
+    font-size: 36px;
+    color: #ffffff
+}
+
+.flex-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

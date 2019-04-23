@@ -1,0 +1,51 @@
+<html>
+    <head>
+        <script type="text/javascript" src="../node_modules/mapwize/mapwize.js"></script> <!--this line and next points to .js files for function use-->
+        <script type="text/javascript" src="../node_modules/mapwize-ui/mapwizeui.js"></script>
+        <style>
+            #mapwize {
+                position:absolute; top:0; bottom:0; width:100%; height: 100%; /* tells how much of the screen to fill*/
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="mapwize"></div>
+        <script>
+            var unionVenueid = '5c82a195a380850016b0226f';
+            var unionAPIkey = '95c9933eb6c1967381993901b64fb830';
+
+            MapwizeUI.map({
+                apiKey: unionAPIkey,
+                mapboxOptions: {},
+                mapwizeOptions: {},
+                onInformationButtonClick: (e) => {
+                console.log('clickOnSelectedInformation', e)
+                },
+                onMenuButtonClick: (e) => {
+                    console.log('clickOnMenu', e)
+                }
+            }).then((map) => {
+                console.log('MAP LOADED')
+            })
+
+            Mapwize.apiKey(unionAPIkey) //this is the api key which links the file to the mapping data
+            Mapwize.map({
+                container: 'mapwize',
+                color: 'crimson red',
+                center: [-88.8617697,35.6844031]    // this gives the long/lat coordinates for the venue
+            },{
+                venueId: unionVenueid
+            }).then(mapInstance => {
+                mapInstance.centerOnVenue(unionVenueid); //instructs the map to center on top of the venue
+            });
+            map.fitBounds([
+                [-88.6, 35.4],
+                [-89.0, 35.8]
+            ]);
+            map.getFollowUserMode();
+            map.setFollowUserMode('FOLLOW_USER');
+            //Mapwize.apiUrl('https://maps.mapwize.io/#/v/union_university?k=uu_token&u=default_universe&follow=true');
+        </script>
+    </body>
+</html>
